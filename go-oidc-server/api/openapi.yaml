@@ -1,0 +1,87 @@
+openapi: 3.0.0
+info:
+  title: OIDC Server API
+  description: API for the OIDC server providing authentication and authorization services.
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080
+paths:
+  /authorize:
+    get:
+      summary: Authorization Endpoint
+      parameters:
+        - name: response_type
+          in: query
+          required: true
+          description: The type of response desired (e.g., code).
+          schema:
+            type: string
+        - name: client_id
+          in: query
+          required: true
+          description: The client identifier.
+          schema:
+            type: string
+        - name: redirect_uri
+          in: query
+          required: true
+          description: The URI to redirect to after authorization.
+          schema:
+            type: string
+        - name: scope
+          in: query
+          required: false
+          description: The scope of the access request.
+          schema:
+            type: string
+      responses:
+        '302':
+          description: Redirect to the specified redirect_uri with authorization code.
+  /token:
+    post:
+      summary: Token Endpoint
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                grant_type:
+                  type: string
+                code:
+                  type: string
+                redirect_uri:
+                  type: string
+                client_id:
+                  type: string
+                client_secret:
+                  type: string
+      responses:
+        '200':
+          description: Successful token response.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access_token:
+                    type: string
+                  token_type:
+                    type: string
+                  expires_in:
+                    type: integer
+  /health:
+    get:
+      summary: Health Check Endpoint
+      responses:
+        '200':
+          description: Server is healthy.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "healthy"
