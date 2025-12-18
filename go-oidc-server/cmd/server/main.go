@@ -2,6 +2,7 @@ package main
 
 import (
 	"go-oidc-server/internal/server"
+	"go-oidc-server/utils"
 	"log"
 	"net/http"
 
@@ -9,6 +10,7 @@ import (
 )
 
 func main() {
+	utils.GetToken()
 	r := mux.NewRouter()
 
 	// Set up routes
