@@ -50,7 +50,7 @@ func getToken(port string) string {
 	result := ""
 	now := time.Now()
 	claims := jwt.MapClaims{
-		"iss": "https://192.168.204.1:8080",
+		"iss": "https://34.59.255.46:30080",
 		"aud": "testid",
 		"exp": now.Add(time.Hour).Unix(),
 		"_claim_names": map[string]interface{}{
