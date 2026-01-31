@@ -124,12 +124,12 @@ func discoveryHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	host := r.Host
 	if host == "" {
-		host = "localhost:8443"
+		host = "k8stest.top:30080"
 	}
 	base := scheme + "://" + host
 
 	resp := map[string]interface{}{
-		"issuer":                                base,
+		"issuer":                                "https://k8stest.top:30080",
 		"authorization_endpoint":                base + "/authorize",
 		"token_endpoint":                        base + "/token",
 		"userinfo_endpoint":                     base + "/userinfo",

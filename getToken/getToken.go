@@ -50,21 +50,23 @@ func getToken(port string) string {
 	result := ""
 	now := time.Now()
 	claims := jwt.MapClaims{
-		"iss": "https://34.59.255.46:30080",
+		/*normal claims*/
+		// "iss": "https://k8stest.top:30080",
+		// "aud": "testid",
+		// "exp": now.Add(time.Hour).Unix(),
+		// "sub":       "userA",
+		// "testgroup": "groupA",
+		// "_claim_names": map[string]interface{}{
+		// 	"testgroup": "src1",
+		// },
+
+		/*distributed claims*/
+		"iss": "https://k8stest.top:30080",
 		"aud": "testid",
 		"exp": now.Add(time.Hour).Unix(),
 		"_claim_names": map[string]interface{}{
 			"testgroup": "src1",
 		},
-		"_claim_sources": map[string]interface{}{
-			"src1": map[string]interface{}{
-				"endpoint": "http://localhost:" + port + "/test?a=a",
-			},
-		},
-		//"testgroup": "a",
-		// "sub": fmt.Sprintf("user-%d", i),
-		// "iat": now.Unix(),
-		// "jti": fmt.Sprintf("%d-%d", now.UnixNano(), i),
 	}
 	token := jwt.NewWithClaims(jwt.SigningMethodRS256, claims)
 	signed, err := token.SignedString(privateKey)
