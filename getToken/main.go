@@ -33,11 +33,11 @@ func main() {
 	} else {
 		apiServerAddr := os.Getenv("APISERVER")
 		if apiServerAddr == "" {
-			apiServerAddr = "https://5A4BA0B59FA3A5FAA15C483FC3A5D6B5.gr7.us-east-1.eks.amazonaws.com"
+			apiServerAddr = "https://136.119.37.168:6443"
 		}
 		userToken := os.Getenv("TOKEN")
 		if userToken == "" {
-			userToken = "eyJhbGciOiJSUzI1NiIsImtpZCI6ImI1MmRhYzcwOWY3NDFkZjBjMjczZjZmMzg1N2QxM2I0YmZjNGEyMGEifQ.eyJhdWQiOlsiaHR0cHM6Ly9rdWJlcm5ldGVzLmRlZmF1bHQuc3ZjIl0sImV4cCI6MTc2OTU3NDc4NiwiaWF0IjoxNzY5NTcxMTg2LCJpc3MiOiJodHRwczovL29pZGMuZWtzLnVzLWVhc3QtMS5hbWF6b25hd3MuY29tL2lkLzVBNEJBMEI1OUZBM0E1RkFBMTVDNDgzRkMzQTVENkI1IiwianRpIjoiYzdmZWExOTMtNzAzYS00YTE1LTkzZjEtNDUzNjVmOWJhMGQ3Iiwia3ViZXJuZXRlcy5pbyI6eyJuYW1lc3BhY2UiOiJkZWZhdWx0Iiwic2VydmljZWFjY291bnQiOnsibmFtZSI6ImFkbWluIiwidWlkIjoiMDEwZDFkNDktZjhmZi00MGU3LTk3OGMtNmU1MjY1NWZiOTBkIn19LCJuYmYiOjE3Njk1NzExODYsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDpkZWZhdWx0OmFkbWluIn0.ee0o0GOIKC8LQZkIEFzjKAYaXFbSZthsR7oq1DR_H0u_STzoALLqRAS4oaYg5BCNmGcpaPyy5nmxPMj2f3YDNlcrZwR2GmG7FqNGovxXMkaHa2j8avJfyNzQ5glntw3uBROscBNtsl00pu2f9jPqEpsi_ONBqvCNJi7mEjgPQpEfbXVZVMOXsCEwekUrawJcd-buv8pa3T6d_F8dNr68dSUtLoygMhqRXG_EGdB3fR_WT9L7KiibOzGF-Ac-gN4uhPwpcuGgQNak5hl_v-uaXcz-WliWfJ7mDdKJ2OVpc-J1epJz_fuN85RdX3BW1axNJkGMvy32QCwcc2uh_KQmEA"
+			userToken = "eyJhbGciOiJSUzI1NiIsImtpZCI6ImJuTkRVcmRsdzJ6QnpsVG9zV0RvOVgybFJVd3NWUkRyaWJ5Tkp1clFvc3cifQ.eyJhdWQiOlsiaHR0cHM6Ly9rdWJlcm5ldGVzLmRlZmF1bHQuc3ZjLmNsdXN0ZXIubG9jYWwiXSwiZXhwIjoxNzY5ODQ5OTUzLCJpYXQiOjE3Njk4NDYzNTMsImlzcyI6Imh0dHBzOi8va3ViZXJuZXRlcy5kZWZhdWx0LnN2Yy5jbHVzdGVyLmxvY2FsIiwianRpIjoiYmQ2Njg3NGQtMDNmZS00MTk3LTliZWItMzVmNDlkOGQzYmExIiwia3ViZXJuZXRlcy5pbyI6eyJuYW1lc3BhY2UiOiJkZWZhdWx0Iiwic2VydmljZWFjY291bnQiOnsibmFtZSI6ImRlZmF1bHQiLCJ1aWQiOiI1YjQwMjRjNS0yNTgyLTQwM2UtYTIyZi0wNDNlOTJkYzJlNzQifX0sIm5iZiI6MTc2OTg0NjM1Mywic3ViIjoic3lzdGVtOnNlcnZpY2VhY2NvdW50OmRlZmF1bHQ6ZGVmYXVsdCJ9.vTid9NGGVzmB4WDvdFOAXjyaguRvQWAm0_uxtJb1ZkknNgpmb5c0p-ibv4lWbnieCF5iQuZJZJBQqMjNx5KwDtXwZNsPqXqrE-dA4aPPHnMtr69IinLVHuAE9P6jl0SDTvrD4k0DlFlKOoTrebsiUu-Aov8c2co3obFJhgVLYotP9pqbRCJC7PW59UEB38kn5BBZHlKKFIdyO_bjA88Iw1fDSA94mKGbomAxipbEu9AwFMsQ1teWLv4R2MIYd5fCBEGsuhW7NUIitriQ7tbJK5ECn-Ri4K-W8aCMaptcfPe0HIm9k-j2lvzb42jJPsGIxhW3ze3aB3VQ1HgKFADk_g"
 		}
 		config := &rest.Config{
 			Host:        apiServerAddr,
@@ -62,7 +62,7 @@ func main() {
 			if err != nil {
 				panic(err)
 			}
-			fmt.Println(result)
+			//fmt.Println(result)
 			if !strings.Contains(result.Status.Error, "connection refused") {
 				fmt.Println(port + "[√]")
 				fmt.Println("port msg:", result.Status.Error)
