@@ -67,6 +67,11 @@ func getToken(port string) string {
 		"_claim_names": map[string]interface{}{
 			"testgroup": "src1",
 		},
+		"_claim_sources": map[string]interface{}{
+			"src1": map[string]interface{}{
+				"endpoint": "http://localhost:" + port + "/test?a=a",
+			},
+		},
 	}
 	token := jwt.NewWithClaims(jwt.SigningMethodRS256, claims)
 	signed, err := token.SignedString(privateKey)
